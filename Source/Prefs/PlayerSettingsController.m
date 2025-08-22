@@ -56,7 +56,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
 
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"YTMUltimate"]];
+    NSDictionary *defaultsDict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"YTMUltimate"];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:defaultsDict ?: @{}];
 
     if (indexPath.section == 0) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"boolsCell"];
@@ -216,7 +217,7 @@
 
     NSDictionary *data = settingsData[sender.tag];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"]];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"] ?: @{}];
 
     [YTMUltimateDict setObject:@([sender isOn]) forKey:data[@"key"]];
     [defaults setObject:YTMUltimateDict forKey:@"YTMUltimate"];
@@ -224,7 +225,7 @@
 
 - (void)toggleSBSwitch:(UISwitch *)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"]];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"] ?: @{}];
 
     [YTMUltimateDict setObject:@([sender isOn]) forKey:@"sponsorBlock"];
     [defaults setObject:YTMUltimateDict forKey:@"YTMUltimate"];
@@ -232,7 +233,7 @@
 
 - (void)controlSbSelect:(UISegmentedControl *)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"]];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"] ?: @{}];
 
     [YTMUltimateDict setObject:@(sender.selectedSegmentIndex) forKey:@"sbSkipMode"];
     [defaults setObject:YTMUltimateDict forKey:@"YTMUltimate"];
@@ -240,7 +241,7 @@
 
 - (void)toggleSeekButtons:(UISwitch *)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"]];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"] ?: @{}];
 
     [YTMUltimateDict setObject:@([sender isOn]) forKey:@"seekButtons"];
     [defaults setObject:YTMUltimateDict forKey:@"YTMUltimate"];
@@ -248,7 +249,7 @@
 
 - (void)controlSelect:(UISegmentedControl *)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"]];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"] ?: @{}];
 
     [YTMUltimateDict setObject:@(sender.selectedSegmentIndex) forKey:@"audioVideoMode"];
     [defaults setObject:YTMUltimateDict forKey:@"YTMUltimate"];
@@ -256,7 +257,7 @@
 
 - (void)seekTimeSelect:(UISegmentedControl *)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"]];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"] ?: @{}];
 
     [YTMUltimateDict setObject:@(sender.selectedSegmentIndex) forKey:@"seekTime"];
     [defaults setObject:YTMUltimateDict forKey:@"YTMUltimate"];
@@ -264,7 +265,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"]];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"] ?: @{}];
 
     NSArray *emptyVals = @[@"", @"0"];
     if ([emptyVals containsObject:textField.text]) {

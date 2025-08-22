@@ -32,7 +32,8 @@
     ]];
 
     //Init isEnabled for first time
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"YTMUltimate"]];
+    NSDictionary *defaultsDict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"YTMUltimate"];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:defaultsDict ?: @{}];
     if (!YTMUltimateDict[@"YTMUltimateIsEnabled"]) {
         [YTMUltimateDict setObject:@(1) forKey:@"YTMUltimateIsEnabled"];
         [[NSUserDefaults standardUserDefaults] setObject:YTMUltimateDict forKey:@"YTMUltimate"];
@@ -99,7 +100,8 @@
         }
     }
 
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"YTMUltimate"]];
+    NSDictionary *defaultsDict2 = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"YTMUltimate"];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:defaultsDict2 ?: @{}];
 
     if (indexPath.section == 0) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"masterSection"];
@@ -285,7 +287,7 @@
 
 - (void)toggleMasterSwitch:(UISwitch *)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *twitchDvnDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"]];
+    NSMutableDictionary *twitchDvnDict = [NSMutableDictionary dictionaryWithDictionary:[defaults dictionaryForKey:@"YTMUltimate"] ?: @{}];
 
     [twitchDvnDict setObject:@([sender isOn]) forKey:@"YTMUltimateIsEnabled"];
     [defaults setObject:twitchDvnDict forKey:@"YTMUltimate"];
