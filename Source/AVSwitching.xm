@@ -223,7 +223,8 @@ static int YTMUint(NSString *key) {
 // %end
 
 %ctor {
-    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"YTMUltimate"]];
+    NSDictionary *defaultsDict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"YTMUltimate"];
+    NSMutableDictionary *YTMUltimateDict = [NSMutableDictionary dictionaryWithDictionary:defaultsDict ?: @{}];
 
     NSArray *intKeys = @[@"audioVideoMode"];
     for (NSString *key in intKeys) {
